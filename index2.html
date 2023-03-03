@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funda,ento de Vue</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <div id="app"></div>
+    <script>
+        const app = Vue.createApp({
+            template:`
+                <div>
+                    <v-header>
+                        <template v-slot:header>
+                            <h2>Titulo</h2>
+                        </template>
+                        
+                    </v-header>
+                    <v-layout>
+                        <template v-slot:content>
+                            <p>Titulo</p>
+                        </template>
+                        </v-layout>
+                    
+                </div>
+            `
+        })
+
+        app.component("v-header", {
+            template: `<header>
+                        <slot name="header" />
+                    </header>
+                    `
+        })
+        app.component("v-layout", {
+            template: `<div>
+                        <slot name="content" />
+                    </div>`
+        })
+
+        const vm = app.mount("#app")
+    </script>
+</body>
+</html>
